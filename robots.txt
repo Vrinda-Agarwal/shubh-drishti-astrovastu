@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://shubh-drishti-astrovastu.vercel.app/sitemap.xml
