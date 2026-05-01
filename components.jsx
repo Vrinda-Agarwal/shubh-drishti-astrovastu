@@ -200,13 +200,13 @@ function AboutSection() {
           <h2 style={{ fontSize: isMobile ? 30 : 42, fontFamily: "'Playfair Display', serif", color: '#386641', lineHeight: 1.2, margin: '0 0 16px' }}>Acharya Shruti Agarwal</h2>
           <div style={{ width: 50, height: 3, background: '#a7c957', marginBottom: 24, borderRadius: 2 }}></div>
           <p style={{ fontSize: 15, color: '#555', lineHeight: 1.8, margin: '0 0 16px' }}>
-            With formal training in Astrology and Vastu from ICAS Chennai, Acharya Shruti offers structured, insight-driven guidance to help individuals and families make confident life decisions.
+            With formal training in Astrology and Vastu from ICAS Lucknow, Acharya Shruti offers structured, insight-driven guidance to help individuals and families make confident life decisions.
           </p>
           <p style={{ fontSize: 15, color: '#555', lineHeight: 1.8, margin: '0 0 16px' }}>
             Her approach blends classical astrological wisdom with practical Vastu solutions — creating harmonious spaces that enhance well-being, balance, and quality of living.
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginTop: 28 }}>
-            {[['ICAS Chennai', 'Certified'], ['Vedic Astrology', 'Expertise'], ['Vastu Shastra', 'Specialist'], ['500+ Clients', 'Consulted']].map(([t, s]) => (
+            {[['ICAS Lucknow', 'Certified'], ['Vedic Astrology', 'Expertise'], ['Vastu Shastra', 'Specialist'], ['500+ Clients', 'Consulted']].map(([t, s]) => (
               <div key={t} style={{ padding: '14px 16px', background: '#fff', borderRadius: 6, borderLeft: '3px solid #386641' }}>
                 <div style={{ fontSize: 13, fontWeight: 600, color: '#386641' }}>{t}</div>
                 <div style={{ fontSize: 10, color: '#999', textTransform: 'uppercase', letterSpacing: 1, marginTop: 2 }}>{s}</div>
