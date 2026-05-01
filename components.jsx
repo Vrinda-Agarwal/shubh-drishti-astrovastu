@@ -219,18 +219,51 @@ function AboutSection() {
   );
 }
 
+const ServiceIcons = {
+  residential: (color) => (
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 9.5L12 3l9 6.5V21H3V9.5z" /><path d="M9 21V12h6v9" />
+    </svg>
+  ),
+  commercial: (color) => (
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="3" width="20" height="18" rx="1" /><path d="M2 9h20M9 3v18M15 9v12" />
+    </svg>
+  ),
+  industrial: (color) => (
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M2 21V9l5-4v4l5-4v4l5-4v16H2z" /><rect x="9" y="15" width="3" height="6" /><rect x="14" y="13" width="3" height="8" />
+    </svg>
+  ),
+  astrovastu: (color) => (
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" />
+    </svg>
+  ),
+  corrections: (color) => (
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z" />
+    </svg>
+  ),
+  birthchart: (color) => (
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="4" /><line x1="12" y1="2" x2="12" y2="8" /><line x1="12" y1="16" x2="12" y2="22" /><line x1="2" y1="12" x2="8" y2="12" /><line x1="16" y1="12" x2="22" y2="12" />
+    </svg>
+  ),
+};
+
 function ServicesSection() {
   const bp = useBreakpoint();
   const cols = bp === 'mobile' ? '1fr' : bp === 'tablet' ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)';
   const isMobile = bp === 'mobile';
 
   const services = [
-    { icon: '🏠', title: 'Residential Vastu', desc: 'Create harmony and balance in your living space. Improve positive energy flow following Vastu principles for your home.' },
-    { icon: '🏢', title: 'Commercial Vastu', desc: 'Create a harmonious work environment by balancing energies. Boost employee productivity and attract success.' },
-    { icon: '🏭', title: 'Industrial Vastu', desc: 'Harmonious factory layout bringing positive energy for better production, worker satisfaction, and business growth.' },
-    { icon: '✧', title: 'Astro-Vastu', desc: 'Integrates Vastu Shastra with Vedic Astrology, aligning your space with your unique planetary positions for hyper-personalized solutions.' },
-    { icon: '◎', title: 'Vastu Corrections', desc: 'Guidance on room placements, directions, and design remedies to correct energy imbalances without structural changes.' },
-    { icon: '☉', title: 'Birth Chart Analysis', desc: 'In-depth analysis combining Vastu principles and your birth chart to provide tailored guidance for your space.' },
+    { iconKey: 'residential', title: 'Residential Vastu', desc: 'Create harmony and balance in your living space. Improve positive energy flow following Vastu principles for your home.' },
+    { iconKey: 'commercial',  title: 'Commercial Vastu', desc: 'Create a harmonious work environment by balancing energies. Boost employee productivity and attract success.' },
+    { iconKey: 'industrial',  title: 'Industrial Vastu', desc: 'Harmonious factory layout bringing positive energy for better production, worker satisfaction, and business growth.' },
+    { iconKey: 'astrovastu',  title: 'Astro-Vastu', desc: 'Integrates Vastu Shastra with Vedic Astrology, aligning your space with your unique planetary positions for hyper-personalized solutions.' },
+    { iconKey: 'corrections', title: 'Vastu Corrections', desc: 'Guidance on room placements, directions, and design remedies to correct energy imbalances without structural changes.' },
+    { iconKey: 'birthchart',  title: 'Birth Chart Analysis', desc: 'In-depth analysis combining Vastu principles and your birth chart to provide tailored guidance for your space.' },
   ];
 
   return (
@@ -251,6 +284,7 @@ function ServicesSection() {
 
 function ServiceCard({ service }) {
   const [hovered, setHovered] = React.useState(false);
+  const iconColor = hovered ? '#a7c957' : '#386641';
   return (
     <div onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
       style={{
@@ -263,10 +297,9 @@ function ServiceCard({ service }) {
       <div style={{
         width: 48, height: 48, borderRadius: 8,
         background: hovered ? 'rgba(167,201,87,0.2)' : 'rgba(56,102,65,0.1)',
-        color: hovered ? '#a7c957' : '#386641',
-        display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, marginBottom: 16,
+        display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16,
         transition: 'all 0.35s ease',
-      }}>{service.icon}</div>
+      }}>{ServiceIcons[service.iconKey](iconColor)}</div>
       <h3 style={{ fontSize: 17, fontWeight: 600, color: hovered ? '#f2e8cf' : '#386641', margin: '0 0 10px', fontFamily: "'Playfair Display', serif", transition: 'color 0.35s' }}>{service.title}</h3>
       <p style={{ fontSize: 14, color: hovered ? 'rgba(242,232,207,0.7)' : '#666', lineHeight: 1.7, margin: 0, transition: 'color 0.35s' }}>{service.desc}</p>
     </div>
@@ -317,6 +350,8 @@ function TestimonialsSection() {
   const [active, setActive] = React.useState(0);
   const bp = useBreakpoint();
   const isMobile = bp === 'mobile';
+  const touchStartX = React.useRef(null);
+  const timerRef = React.useRef(null);
 
   const testimonials = [
     { name: 'Rajesh Sharma', role: 'Homeowner, Delhi', text: 'Acharya Shruti\'s guidance transformed our home. The energy shift was palpable from day one. Our family harmony improved significantly.' },
@@ -324,24 +359,54 @@ function TestimonialsSection() {
     { name: 'Ankit Gupta', role: 'IT Professional, Bangalore', text: 'The Astro-Vastu consultation was eye-opening. The personalized approach considering my birth chart made all the difference.' },
   ];
 
+  const goTo = (i) => setActive((i + testimonials.length) % testimonials.length);
+
+  // Auto-scroll every 4 seconds, resets on manual interaction
+  const resetTimer = () => {
+    clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => setActive(a => (a + 1) % testimonials.length), 4000);
+  };
+
+  React.useEffect(() => {
+    resetTimer();
+    return () => clearInterval(timerRef.current);
+  }, []);
+
+  const handleDotClick = (i) => { goTo(i); resetTimer(); };
+
+  // Swipe support
+  const onTouchStart = (e) => { touchStartX.current = e.touches[0].clientX; };
+  const onTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) { goTo(active + (diff > 0 ? 1 : -1)); resetTimer(); }
+    touchStartX.current = null;
+  };
+
   return (
     <section id="Testimonials" style={{ padding: isMobile ? '72px 20px' : '120px 32px', background: '#f2e8cf' }}>
       <div style={{ maxWidth: 800, margin: '0 auto', textAlign: 'center' }}>
         <div style={{ fontSize: 11, letterSpacing: 4, color: '#6a994e', textTransform: 'uppercase', marginBottom: 12, fontWeight: 500 }}>Testimonials</div>
         <h2 style={{ fontSize: isMobile ? 30 : 42, fontFamily: "'Playfair Display', serif", color: '#386641', lineHeight: 1.2, margin: '0 0 36px' }}>What Our Clients Say</h2>
-        <div style={{ padding: isMobile ? '32px 24px' : '48px 40px', background: '#fff', borderRadius: 12 }}>
+        <div
+          onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}
+          style={{ padding: isMobile ? '32px 24px' : '48px 40px', background: '#fff', borderRadius: 12, userSelect: 'none' }}>
           <div style={{ fontSize: 48, color: '#bc4749', fontFamily: "'Playfair Display', serif", lineHeight: 1 }}>"</div>
-          <p style={{ fontSize: isMobile ? 15 : 18, color: '#444', lineHeight: 1.8, fontStyle: 'italic', margin: '0 0 24px' }}>{testimonials[active].text}</p>
+          <p style={{ fontSize: isMobile ? 15 : 18, color: '#444', lineHeight: 1.8, fontStyle: 'italic', margin: '0 0 24px', minHeight: isMobile ? 100 : 80, transition: 'opacity 0.3s' }}>
+            {testimonials[active].text}
+          </p>
           <div style={{ fontSize: 15, fontWeight: 600, color: '#386641' }}>{testimonials[active].name}</div>
           <div style={{ fontSize: 13, color: '#999', marginTop: 4 }}>{testimonials[active].role}</div>
-          <div style={{ display: 'flex', gap: 8, justifyContent: 'center', marginTop: 28 }}>
+          <div style={{ display: 'flex', gap: 8, justifyContent: 'center', alignItems: 'center', marginTop: 28 }}>
+            <button onClick={() => { goTo(active - 1); resetTimer(); }} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#aaa', fontSize: 20, padding: '0 8px', lineHeight: 1 }}>‹</button>
             {testimonials.map((_, i) => (
-              <div key={i} onClick={() => setActive(i)} style={{
+              <div key={i} onClick={() => handleDotClick(i)} style={{
                 width: i === active ? 28 : 8, height: 8, borderRadius: 4,
                 background: i === active ? '#386641' : '#ddd',
                 cursor: 'pointer', transition: 'all 0.3s',
               }}></div>
             ))}
+            <button onClick={() => { goTo(active + 1); resetTimer(); }} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#aaa', fontSize: 20, padding: '0 8px', lineHeight: 1 }}>›</button>
           </div>
         </div>
       </div>
