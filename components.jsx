@@ -519,7 +519,7 @@ function ContactSection() {
             </div>
             {[
               ['Email', 'shrutivrinda16@gmail.com'],
-              ['Phone', '+91 9305512623 / 9889360562'],
+              ['Phone', '+91 9305512623 / 7007123232'],
               ['Address', 'L-636, Indralok Colony, Krishna Nagar, Alambagh, Lucknow'],
             ].map(([label, val]) => (
               <div key={label} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
