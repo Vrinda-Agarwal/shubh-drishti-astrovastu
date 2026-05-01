@@ -2,7 +2,7 @@
    Palette: #386641, #6a994e, #a7c957, #f2e8cf, #bc4749 */
 
 // Replace YOUR_FORM_ID after signing up at formspree.io
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xnjwqrkz';
 const WHATSAPP_NUMBER = '919305512623';
 
 const PALETTE = {
